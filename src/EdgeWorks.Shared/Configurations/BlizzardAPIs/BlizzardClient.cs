@@ -1,6 +1,6 @@
 ﻿namespace EdgeWorks.Shared.Configurations.BlizzardAPIs
 {
-    public class Client
+    public class BlizzardClient
     {
         public string Name { get; set; }
 

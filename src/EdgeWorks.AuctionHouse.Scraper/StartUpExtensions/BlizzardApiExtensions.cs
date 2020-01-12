@@ -14,7 +14,7 @@ namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
 		public static IServiceCollection ConfigureBlizzardApis(this IServiceCollection services, IConfigurationRoot configuration)
 		{
 			services.Configure<ApiSettings>(configuration.GetSection("ApiSettings"));
-			services.Configure<Client>(configuration.GetSection("Client"));
+			services.Configure<BlizzardClient>(configuration.GetSection("Client"));
 			services.AddSingleton<OAuthApi>();
 
 			return services;

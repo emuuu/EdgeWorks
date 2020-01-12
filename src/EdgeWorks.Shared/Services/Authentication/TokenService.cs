@@ -11,14 +11,14 @@ namespace EdgeWorks.Shared.Services.Authentication
 {
     public class TokenService : ITokenService
     { 
-        private readonly Client _client;
+        private readonly BlizzardClient _client;
         private readonly OAuthApi _authorizeEndpoint;
         private readonly ILogger<TokenService> _logger;
 
         private TokenResponse _accesToken;
         private DateTime _tokenExpirationTime;
 
-        public TokenService(IOptions<Client> client, OAuthApi api, ILogger<TokenService> logger)
+        public TokenService(IOptions<BlizzardClient> client, OAuthApi api, ILogger<TokenService> logger)
         {
             _client = client.Value;
             _authorizeEndpoint = api;
