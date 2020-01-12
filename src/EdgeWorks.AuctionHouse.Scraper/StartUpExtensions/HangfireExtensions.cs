@@ -32,8 +32,7 @@ namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
             app.UseHangfireServer();
 
 			//define recurring jobs
-			//RecurringJob.AddOrUpdate<ScrapeService>("Auction API scraping", x => x.TriggerTest(), Cron.Minutely());
-			BackgroundJob.Enqueue<ScrapeService>(x => x.GetAuctions());
+			RecurringJob.AddOrUpdate<ScrapeService>("Auction API scraping", x => x.GetAuctions(), Cron.MinuteInterval(5));
 
 			return app;
         }
