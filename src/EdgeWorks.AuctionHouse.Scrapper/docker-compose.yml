@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  edgeworks.auctionhouse.scraper:
+    image: ${DOCKER_REGISTRY}auction_scraper
+    build:
+      context: .
+      dockerfile: EdgeWorks.AuctionHouse.Scraper\Dockerfile
+    container_name: auction_scraper
+    restart: always
+    volumes:
+      - I:/Data/EdgeWorks/Files/:C:/Files
+      - I:/Data/EdgeWorks/Logs/:C:/Logs
+      - I:/Data/EdgeWorks/Volumes/:C:/config
