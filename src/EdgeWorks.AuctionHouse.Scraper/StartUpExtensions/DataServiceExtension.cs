@@ -32,7 +32,6 @@ namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
 			services.AddSingleton<ITokenService, TokenService>();
 
 			services.AddScoped<IFileService, LocalFileService>();
-			//services.AddScoped<IFileService, OneDriveService>();
 
 			//add services
 			services.AddScoped<ScrapeService>();
