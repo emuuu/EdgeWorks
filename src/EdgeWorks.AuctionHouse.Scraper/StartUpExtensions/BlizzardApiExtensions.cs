@@ -7,14 +7,14 @@ namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
 {
 	public static class BlizzardApiExtensions
 	{
-		/// <summary>	An IServiceCollection extension method that configures data services. </summary>
+		/// <summary>	An IServiceCollection extension method that configures Blizzard services. </summary>
 		/// <param name="services">			The services to act on. </param>
 		/// <param name="configuration">	The configuration. </param>
 		/// <returns>	An IServiceCollection. </returns>
 		public static IServiceCollection ConfigureBlizzardApis(this IServiceCollection services, IConfigurationRoot configuration)
 		{
 			services.Configure<ApiSettings>(configuration.GetSection("ApiSettings"));
-			services.Configure<BlizzardClient>(configuration.GetSection("Client"));
+			services.Configure<BlizzardClient>(configuration.GetSection("BlizzardClient"));
 			services.AddSingleton<OAuthApi>();
 
 			return services;
