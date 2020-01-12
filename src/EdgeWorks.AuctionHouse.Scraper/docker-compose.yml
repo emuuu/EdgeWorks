@@ -9,6 +9,7 @@ services:
     container_name: auction_scraper
     restart: always
     volumes:
+      - I:/Data/EdgeWorks/Databases/:C:/Databases
       - I:/Data/EdgeWorks/Files/:C:/Files
       - I:/Data/EdgeWorks/Logs/:C:/Logs
-      - I:/Data/EdgeWorks/Volumes/:C:/config
+      - I:/Data/EdgeWorks/Config/:C:/Config
