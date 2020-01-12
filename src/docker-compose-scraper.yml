@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY}auction_scraper
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: EdgeWorks.AuctionHouse.Scraper\Dockerfile
     container_name: auction_scraper
     restart: always
     volumes:
