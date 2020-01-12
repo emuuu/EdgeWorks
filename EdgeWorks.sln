@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeWorks.Shared", "src\EdgeWorks.Shared\EdgeWorks.Shared.csproj", "{D7707693-0B2C-4050-9651-CAFA81EEFA98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeWorks.AuctionHouse.Scraper", "src\EdgeWorks.AuctionHouse.Scrapper\EdgeWorks.AuctionHouse.Scraper.csproj", "{094B4C01-7514-491F-B4C2-4163C36ECD1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeWorks.AuctionHouse.Scraper", "src\EdgeWorks.AuctionHouse.Scraper\EdgeWorks.AuctionHouse.Scraper.csproj", "{094B4C01-7514-491F-B4C2-4163C36ECD1E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeWorks.Data", "src\EdgeWorks.Data\EdgeWorks.Data.csproj", "{C797C3D4-BA53-4627-B8D3-9E5A45AA0730}"
 EndProject
