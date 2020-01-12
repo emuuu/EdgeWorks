@@ -9,6 +9,7 @@ namespace EdgeWorks.Data.System
     {
         public FileSaveResponseRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
+            UnitOfWork.Connection.Execute("CREATE TABLE IF NOT EXISTS 'FileSaveResponse' ( 'Id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'Filename' TEXT NOT NULL, 'Extension' TEXT, 'Hash' TEXT, 'Path' TEXT, 'IsSuccess' INTEGER NOT NULL, 'ErrorMessage' TEXT )", transaction: UnitOfWork.Transaction);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace EdgeWorks.Data.Auctions
     {
         public AuctionFileRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
+            UnitOfWork.Connection.Execute("CREATE TABLE IF NOT EXISTS 'AuctionFile' ( 'Id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'Url' TEXT NOT NULL, 'LastModified' INTEGER NOT NULL )", transaction: UnitOfWork.Transaction);
         }
 
         public async Task<AuctionFile> GetByLastModified(long lastModified)
