@@ -93,8 +93,7 @@ namespace EdgeWorks.Tools.App
                 foreach (var method in _methods.Where(x => x.Value.DeclaringType == declaringType))
                 {
                     Console.WriteFormatted("{0}", Color.White, TypeDictionary.FormatInput(method.Key));
-                    Console.WriteFormatted(" - {0}", Color.White, TypeDictionary.FormatInput(GetMethodString(method.Value)));
-                    Console.WriteLine("");
+                    Console.WriteLineFormatted(" - {0}", Color.White, TypeDictionary.FormatInput(GetMethodString(method.Value)));
                 }
                 Console.WriteLine("");
             }
