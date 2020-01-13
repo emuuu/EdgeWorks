@@ -56,7 +56,7 @@ namespace EdgeWorks.AuctionHouse.Scraper
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseHangfire();
+            app.UseHangfire(env);
         }
     }
 }
