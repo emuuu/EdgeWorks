@@ -58,15 +58,13 @@ namespace EdgeWorks.Shared.Services.Files
                             }
                             else
                             {
+                                using (var fileStream = new FileStream(filePath, FileMode.Create))
                                 using (var streamWriter = new StreamWriter(memoryStream))
                                 {
                                     await streamWriter.WriteAsync(file.ToJson());
+                                    memoryStream.Seek(0, SeekOrigin.Begin);
+                                    memoryStream.CopyTo(fileStream);
                                 }
-                            }
-                            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                            {
-                                memoryStream.Seek(0, SeekOrigin.Begin);
-                                memoryStream.CopyTo(fileStream);
                             }
                         }
                     }
