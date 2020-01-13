@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using EdgeWorks.AuctionHouse.Scraper.StartUpExtensions;
 using EdgeWorks.AuctionHouse.Shared.StartUpExtensions;
+using EdgeWorks.Shared.StartUpExtensions;
 
 namespace EdgeWorks.AuctionHouse.Scraper
 {
@@ -39,6 +40,8 @@ namespace EdgeWorks.AuctionHouse.Scraper
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddBasicConfigurations(Configuration)
+                .ConfigureFileStorage(Configuration)
                 .ConfigureLogging(Configuration)
                 .ConfigureMapping(Configuration)
                 .ConfigureHangfire(Configuration)

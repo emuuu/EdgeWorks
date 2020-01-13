@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.BattleNet;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.CommunityAPIs;
+using EdgeWorks.Shared.Configurations.BlizzardAPIs.WorldOfWarcraft.GameDataAPIs;
 
 namespace EdgeWorks.AuctionHouse.Shared.StartUpExtensions
 {
@@ -20,6 +21,7 @@ namespace EdgeWorks.AuctionHouse.Shared.StartUpExtensions
 			//add apis
 			services.AddSingleton<OAuthApi>();
 			services.AddSingleton<AuctionAPI>();
+			services.AddSingleton<ItemAPI>();
 
 			return services;
 		}

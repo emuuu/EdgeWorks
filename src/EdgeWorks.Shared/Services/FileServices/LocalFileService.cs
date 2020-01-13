@@ -2,11 +2,14 @@
 using EdgeWorks.Data.System;
 using EdgeWorks.Shared.Configuration;
 using EdgeWorks.Shared.Extensions;
+using Ionic.Zip;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EdgeWorks.Shared.Services.Files
@@ -47,15 +50,10 @@ namespace EdgeWorks.Shared.Services.Files
                         {
                             if (compress)
                             {
-                                using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                                using (var archive = new ZipFile())
                                 {
-                                    var auctionFile = archive.CreateEntry(fileName + ".json");
-
-                                    using (var entryStream = auctionFile.Open())
-                                    using (var streamWriter = new StreamWriter(entryStream))
-                                    {
-                                        await streamWriter.WriteAsync(file.ToJson());
-                                    }
+                                    archive.AddEntry(fileName + ".json", file.ToJson());
+                                    archive.Save(filePath);
                                 }
                             }
                             else
@@ -83,17 +81,57 @@ namespace EdgeWorks.Shared.Services.Files
                     fileResponse.IsSuccess = false;
                     fileResponse.ErrorMessage = ex.Message;
 
-                    if (_logger != null)
                         _logger.LogError(ex, "Failed to save file {0}", fileName);
                 }
 
-                if (_logger != null)
                     _logger.LogInformation("LocalFile: Finished saving {0} {1} success", fileName, fileResponse.IsSuccess ? "with" : "without");
 
                 var result = uow.FileSaveResponseRepository.Add(fileResponse);
                 uow.Commit();
 
                 return result;
+            }
+        }
+
+        public async Task<IEnumerable<string>> GetStorage()
+        {
+            return await Task.Run(() =>
+             {
+                 return Directory.GetFiles(_fileStorage);
+             });
+        }
+
+        public async Task<T> LoadFromStorage<T>(string fileName)
+        {
+            try
+            {
+                if (!File.Exists(_fileStorage + fileName))
+                    return default;
+
+                var file = new FileInfo(_fileStorage + fileName);
+
+                var json = "";
+                if (file.Extension.ToLower() == ".zip")
+                {
+                    using (var zipFile = ZipFile.Read(file.FullName))
+                    using (var entryReader = zipFile.Entries.First().OpenReader())
+                    using (var streamRead = new StreamReader(entryReader))
+                    {
+                        json = await streamRead.ReadToEndAsync();
+                    }
+                }
+                else
+                {
+                    json = await File.ReadAllTextAsync(file.FullName);
+                }
+                _logger.LogInformation("LocalFile: Finished reading file {0}", fileName);
+
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "LocalFile: Failed to obtain file {0}", fileName);
+                return default;
             }
         }
     }
