@@ -4,18 +4,18 @@ namespace EdgeWorks.Shared.Configurations.BlizzardAPIs.BattleNet
 {
     public class OAuthApi
     {
-        private string _region;
+        private ApiSettings _settings;
 
         public OAuthApi(IOptions<ApiSettings> settings)
         {
-            _region = settings.Value.Region;
+            _settings = settings.Value;
         }
 
         public string AuthorizationRequest
         {
             get
             {
-                return string.Format("https://{0}.battle.net/oauth/authorize", _region);
+                return string.Format("https://{0}.battle.net/oauth/authorize", _settings.Region);
             }
         }
 
@@ -23,7 +23,7 @@ namespace EdgeWorks.Shared.Configurations.BlizzardAPIs.BattleNet
         {
             get
             {
-                return string.Format("https://{0}.battle.net/oauth/token", _region);
+                return string.Format("https://{0}.battle.net/oauth/token", _settings.Region);
             }
         }
     }

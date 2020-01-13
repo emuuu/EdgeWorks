@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.Options;
 
-namespace EdgeWorks.Shared.Configurations.EdgeWorksAPIs.CommunityAPIs
+namespace EdgeWorks.Shared.Configurations.BlizzardAPIs.CommunityAPIs
 {
     public class AuctionAPI
     {
-        private string _region;
-        private string _realm;
-        private string _locale;
+        private ApiSettings _settings;
 
-        public AuctionAPI(string region, string realm, string locale)
+        public AuctionAPI(IOptions<ApiSettings> settings)
         {
-            _region = region;
-            _realm = realm;
-            _locale = locale;
+            _settings = settings.Value;
         }
 
         public string RequestUrl
         {
             get
             {
-                return string.Format("https://{0}.api.blizzard.com/wow/auction/data/{1}?locale={2}", _region, _realm, _locale);
+                return string.Format("https://{0}.api.blizzard.com/wow/auction/data/{1}?locale={2}", _settings.Region, _settings.Realm, _settings.Locale);
             }
         }
     }
