@@ -4,7 +4,7 @@ using EdgeWorks.Shared.Configurations.BlizzardAPIs;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.BattleNet;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.CommunityAPIs;
 
-namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
+namespace EdgeWorks.AuctionHouse.Shared.StartUpExtensions
 {
 	public static class BlizzardApiExtensions
 	{

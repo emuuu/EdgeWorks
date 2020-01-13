@@ -1,18 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-using EdgeWorks.AuctionHouse.Scraper.StartUpExtensions;
-using Microsoft.AspNetCore.Routing.Constraints;
-using Hangfire;
-using System;
 using Microsoft.Extensions.Hosting;
-using EdgeWorks.AuctionHouse.Scraper.Services;
-using Hangfire.Storage;
+using EdgeWorks.AuctionHouse.Scraper.StartUpExtensions;
+using EdgeWorks.AuctionHouse.Shared.StartUpExtensions;
 
 namespace EdgeWorks.AuctionHouse.Scraper
 {

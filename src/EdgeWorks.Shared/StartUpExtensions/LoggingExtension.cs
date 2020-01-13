@@ -1,12 +1,11 @@
-﻿using EdgeWorks.AuctionHouse.Scraper.Configuration;
-using EdgeWorks.Shared.Configuration;
+﻿using EdgeWorks.Shared.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System.IO;
 
-namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
+namespace EdgeWorks.AuctionHouse.Shared.StartUpExtensions
 {
     public static class LoggingExtension
     {
