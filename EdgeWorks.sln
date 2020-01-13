@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeWorks.Data", "src\EdgeW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeWorks.Models", "src\EdgeWorks.Models\EdgeWorks.Models.csproj", "{386BFA94-98C3-428F-8470-B9947ED609DB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeWorks.Tools", "src\EdgeWorks.Tools\EdgeWorks.Tools.csproj", "{F216F0F1-B28D-4413-8A0C-7D7A9F4067F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{386BFA94-98C3-428F-8470-B9947ED609DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{386BFA94-98C3-428F-8470-B9947ED609DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{386BFA94-98C3-428F-8470-B9947ED609DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F216F0F1-B28D-4413-8A0C-7D7A9F4067F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F216F0F1-B28D-4413-8A0C-7D7A9F4067F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F216F0F1-B28D-4413-8A0C-7D7A9F4067F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F216F0F1-B28D-4413-8A0C-7D7A9F4067F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
