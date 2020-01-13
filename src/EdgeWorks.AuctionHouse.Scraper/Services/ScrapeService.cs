@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EdgeWorks.Shared.Configurations.EdgeWorksAPIs.CommunityAPIs;
+using EdgeWorks.Shared.Configurations.BlizzardAPIs.CommunityAPIs;
 using EdgeWorks.Data;
 using EdgeWorks.Shared.Helpers;
 using Microsoft.Extensions.Logging;
@@ -21,13 +21,13 @@ namespace EdgeWorks.AuctionHouse.Scraper.Services
         private readonly AuctionDataService _dataService;
         private readonly IMapper _mapper;
 
-        public ScrapeService(IFileService fileService, IMapper mapper, AuctionDataService dataService, ITokenService tokenService, IOptions<ApiSettings> _apiSettings, ILogger<ScrapeService> logger)
+        public ScrapeService(IFileService fileService, IMapper mapper, AuctionDataService dataService, ITokenService tokenService, AuctionAPI auctionApi, ILogger<ScrapeService> logger)
         {
             _dataService = dataService;
             _fileService = fileService;
             _tokenService = tokenService;
             _mapper = mapper;
-            _auctionApi = new AuctionAPI(_apiSettings.Value.Region, _apiSettings.Value.Realm, _apiSettings.Value.Locale);
+            _auctionApi = auctionApi;
 
             _logger = logger;
         }

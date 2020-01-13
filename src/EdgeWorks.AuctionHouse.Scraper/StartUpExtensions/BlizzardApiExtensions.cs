@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.BattleNet;
+using EdgeWorks.Shared.Configurations.BlizzardAPIs.CommunityAPIs;
 
 namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
 {
@@ -15,7 +16,10 @@ namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
 		{
 			services.Configure<ApiSettings>(configuration.GetSection("ApiSettings"));
 			services.Configure<BlizzardClient>(configuration.GetSection("BlizzardClient"));
+
+			//add apis
 			services.AddSingleton<OAuthApi>();
+			services.AddSingleton<AuctionAPI>();
 
 			return services;
 		}
