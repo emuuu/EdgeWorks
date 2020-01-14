@@ -1,5 +1,4 @@
-﻿using EdgeWorks.Statistics.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -63,7 +62,14 @@ namespace EdgeWorks.Statistics.Statistics
             get
             {
                 if (_median == default)
-                    _median = _sample.GetMedian();
+                {
+                    double[] sortedPNumbers = _sample.ToArray();
+                    Array.Sort(sortedPNumbers);
+
+                    int size = sortedPNumbers.Length;
+                    int mid = size / 2;
+                    _median = (size % 2 != 0) ? (double)sortedPNumbers[mid] : ((double)sortedPNumbers[mid] + (double)sortedPNumbers[mid - 1]) / 2;
+                }
                 return _median;
             }
         }
