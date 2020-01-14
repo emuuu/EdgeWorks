@@ -10,7 +10,7 @@ First of all you have to create a client at [Blizzards developer page](https://d
 After obtaining the client create a appsettings.secret.json in the Scraper project folder (and take care to keep it *secret*):
 ```
 {
-  "Client": {
+  "BlizzardClient": {
     "Name": "YourClientName",
     "ClientId": "YourClientID",
     "ClientSecret": "YourClientSecret"
