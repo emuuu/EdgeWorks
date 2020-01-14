@@ -33,6 +33,7 @@
       <ProjectReference Include="..\EdgeWorks.Data\EdgeWorks.Data.csproj" />
       <ProjectReference Include="..\EdgeWorks.Models\EdgeWorks.Models.csproj" />
       <ProjectReference Include="..\EdgeWorks.Shared\EdgeWorks.Shared.csproj" />
+      <ProjectReference Include="..\EdgeWorks.Statistics\EdgeWorks.Statistics.csproj" />
   </ItemGroup>
 
 </Project>
