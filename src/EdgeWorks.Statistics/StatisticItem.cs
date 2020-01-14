@@ -8,6 +8,20 @@ namespace EdgeWorks.Statistics.Statistics
     public class StatisticItem
     {
         private IList<double> _sample;
+        private double _sum;
+        private int _count;
+        private double _arithmeticMean;
+        private double _median;
+        private double _minimum;
+        private double _maximum;
+        private double _range;
+        private double _variance;
+        private double _standardDeviation;
+        private double _sampleVariance;
+        private double _sampleStandardDeviation;
+        private double _lowerQuartile;
+        private double _higherQuartile;
+        private double _quartileDistance;
 
         public StatisticItem(IList<double> sample)
         {
@@ -18,7 +32,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Sum();
+                if (_sum == default)
+                    _sum = _sample.Sum();
+                return _sum;
             }
         }
 
@@ -26,7 +42,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Count();
+                if (_count == default)
+                    _count = _sample.Count();
+                return _count;
             }
         }
 
@@ -34,7 +52,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Average();
+                if (_arithmeticMean == default)
+                    _arithmeticMean = _sample.Average();
+                return _arithmeticMean;
             }
         }
 
@@ -42,7 +62,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.GetMedian();
+                if (_median == default)
+                    _median = _sample.GetMedian();
+                return _median;
             }
         }
 
@@ -50,7 +72,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Min();
+               if (_minimum == default)
+                    _minimum = _sample.Min();
+                return _minimum;
             }
         }
 
@@ -58,7 +82,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Max();
+                if (_maximum == default)
+                    _maximum = _sample.Max();
+                return _maximum;
             }
         }
 
@@ -66,7 +92,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return Maxmimum - Minimum;
+                if (_range == default)
+                    _range = Maxmimum - Minimum;
+                return _range;
             }
         }
 
@@ -74,7 +102,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Select(val => Math.Pow((val - ArithmeticMean), 2)).Sum() / Count;
+                if (_variance == default)
+                    _variance = _sample.Select(val => Math.Pow((val - ArithmeticMean), 2)).Sum() / Count;
+                return _variance;
             }
         }
 
@@ -82,7 +112,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return Math.Sqrt(Variance);
+                if (_standardDeviation == default)
+                    _standardDeviation = Math.Sqrt(Variance);
+                return _standardDeviation;
             }
         }
 
@@ -90,7 +122,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Select(val => Math.Pow((val - ArithmeticMean), 2)).Sum() / (Count - 1);
+                if (_sampleVariance == default)
+                    _sampleVariance = _sample.Select(val => Math.Pow((val - ArithmeticMean), 2)).Sum() / (Count - 1);
+                return _sampleVariance;
             }
         }
 
@@ -98,7 +132,9 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return Math.Sqrt(SampleVariance);
+                if (_sampleStandardDeviation == default)
+                    _sampleStandardDeviation = Math.Sqrt(SampleVariance);
+                return _sampleStandardDeviation;
             }
         }
 
@@ -106,8 +142,12 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                var lowerSample  = new StatisticItem(_sample.Where(x => x <= Median).ToList());
-                return lowerSample.Median;
+                if (_lowerQuartile == default)
+                {
+                    var lowerSample = new StatisticItem(_sample.Where(x => x <= Median).ToList());
+                    _lowerQuartile = lowerSample.Median;
+                }
+                return _lowerQuartile;
             }
         }
 
@@ -115,8 +155,12 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                var higherSample = new StatisticItem(_sample.Where(x => x >= Median).ToList());
-                return higherSample.Median;
+                if (_higherQuartile == default)
+                {
+                    var higherSample = new StatisticItem(_sample.Where(x => x >= Median).ToList());
+                    _higherQuartile = higherSample.Median;
+                }
+                return _higherQuartile;
             }
         }
 
@@ -124,7 +168,10 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return HigherQuartile - LowerQuartile;
+                if (_quartileDistance == default)
+                    _quartileDistance = HigherQuartile - LowerQuartile;
+
+                return _quartileDistance;
             }
         }
 
