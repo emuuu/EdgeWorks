@@ -1,6 +1,6 @@
 ﻿using EdgeWorks.Models.Auctions;
-using EdgeWorks.Shared.Configurations.BlizzardAPIs.CommunityAPIs;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.WorldOfWarcraft.GameDataAPIs;
+using EdgeWorks.Shared.Helpers;
 using EdgeWorks.Shared.Services.Authentication;
 using EdgeWorks.Shared.Services.Files;
 using EdgeWorks.Tools.Extensions;
@@ -26,7 +26,7 @@ namespace EdgeWorks.Tools.Services
             _itemApi = itemApi;
         }
 
-        public async Task Test()
+       public async Task GetFiles()
         {
             var i = 1;
             var files = (await _fileService.GetStorage()).Select(x => new KeyValuePair<int, FileInfo>(i++, new FileInfo(x))).ToList();
@@ -58,6 +58,14 @@ namespace EdgeWorks.Tools.Services
                     break;
                 }
             }
+        }
+
+        public async Task GetItem(int itemID)
+        {
+            var accessToken = await _tokenService.GetAccessToken();
+            var response = await HttpRequestFactory.Get(accessToken, _itemApi.Item(itemID));
+
+            Console.WriteLine(response.ContentAsJson());
         }
     }
 }
