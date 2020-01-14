@@ -74,7 +74,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return default;
+                return _sample.Select(val => Math.Pow((val - ArithmeticMean), 2)).Sum() / Count;
             }
         }
 
@@ -82,7 +82,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return Math.Round(Math.Sqrt(_sample.Select(val => (val - ArithmeticMean) * (val - ArithmeticMean)).Sum() / Count), 4);
+                return Math.Sqrt(Variance);
             }
         }
 
@@ -90,7 +90,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return default;
+                return _sample.Select(val => Math.Pow((val - ArithmeticMean), 2)).Sum() / (Count - 1);
             }
         }
 
@@ -98,7 +98,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return default;
+                return Math.Sqrt(SampleVariance);
             }
         }
 
@@ -106,7 +106,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                var lowerSample  = new StatisticItem(_sample.Where(x => x < Median).ToList());
+                var lowerSample  = new StatisticItem(_sample.Where(x => x <= Median).ToList());
                 return lowerSample.Median;
             }
         }
@@ -115,7 +115,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                var higherSample = new StatisticItem(_sample.Where(x => x > Median).ToList());
+                var higherSample = new StatisticItem(_sample.Where(x => x >= Median).ToList());
                 return higherSample.Median;
             }
         }
