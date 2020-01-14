@@ -42,7 +42,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return _sample.Median<double>();
+                return _sample.GetMedian();
             }
         }
 
@@ -82,7 +82,7 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return Math.Sqrt(_sample.Select(val => (val - ArithmeticMean) * (val - ArithmeticMean)).Sum() / Count);
+                return Math.Round(Math.Sqrt(_sample.Select(val => (val - ArithmeticMean) * (val - ArithmeticMean)).Sum() / Count), 4);
             }
         }
 
@@ -106,7 +106,8 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return default;
+                var lowerSample  = new StatisticItem(_sample.Where(x => x < Median).ToList());
+                return lowerSample.Median;
             }
         }
 
@@ -114,7 +115,8 @@ namespace EdgeWorks.Statistics.Statistics
         {
             get
             {
-                return default;
+                var higherSample = new StatisticItem(_sample.Where(x => x > Median).ToList());
+                return higherSample.Median;
             }
         }
 
