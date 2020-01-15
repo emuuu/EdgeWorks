@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EdgeWorks.Statistics.Statistics
+namespace EdgeWorks.Statistics
 {
     public class StatisticItem
     {

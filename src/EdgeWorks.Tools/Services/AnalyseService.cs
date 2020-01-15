@@ -4,7 +4,7 @@ using EdgeWorks.Shared.Configurations.BlizzardAPIs.WorldOfWarcraft.GameDataAPIs;
 using EdgeWorks.Shared.Helpers;
 using EdgeWorks.Shared.Services.Authentication;
 using EdgeWorks.Shared.Services.Files;
-using EdgeWorks.Statistics.Statistics;
+using EdgeWorks.Statistics;
 using EdgeWorks.Tools.Extensions;
 using System;
 using System.Collections.Generic;
