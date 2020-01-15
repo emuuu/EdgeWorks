@@ -4,6 +4,7 @@ using EdgeWorks.Shared.Services.Authentication;
 using EdgeWorks.Shared.Services.Files;
 using EdgeWorks.Shared.Configuration;
 using EdgeWorks.Tools.Services;
+using EdgeWorks.Tools.Configuration;
 
 namespace EdgeWorks.Tools.StartUpExtensions
 {
@@ -18,16 +19,16 @@ namespace EdgeWorks.Tools.StartUpExtensions
 			//add configurations
 			services.AddSingleton<IConfiguration>(configuration);
 			services.Configure<ServerPaths>(configuration.GetSection("ServerPaths"));
+			services.Configure<ObservedItems>(configuration.GetSection("ObservedItems"));
 
 			//add Sqlite-DataLayer
 
 			//add shared services
 			services.AddSingleton<ITokenService, TokenService>();
-
-			services.AddScoped<IFileService, LocalFileService>();
+			services.AddSingleton<IFileService, LocalFileService>();
 
 			//add services
-			services.AddScoped<AnalyseService>();
+			services.AddSingleton<AnalyseService>();
 
 			return services;
 		}
