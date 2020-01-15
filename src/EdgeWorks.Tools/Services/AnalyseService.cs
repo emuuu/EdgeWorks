@@ -35,7 +35,7 @@ namespace EdgeWorks.Tools.Services
             var auctionData = await GetAuctionFile();
             var item = await GetItem(itemID);
             var auctions = auctionData.Auctions.Where(x => x.Item == itemID);
-            var sample = auctions.SelectMany(x => Enumerable.Range(1, x.Quantity).Select(y => x.Buyout / 10000.0));
+            var sample = auctions.SelectMany(x => Enumerable.Range(1, x.Quantity).Select(y => x.Buyout / x.Quantity / 10000.0));
             var statistic = new StatisticItem(sample.ToList());
 
             Console.WriteLine("");
