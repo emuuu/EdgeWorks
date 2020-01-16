@@ -88,7 +88,7 @@ namespace EdgeWorks.Tools.Services
             });
         }
 
-        private async Task<Item> GetItem(int itemID)
+        private async Task<Item> GetItem(long itemID)
         {
             try
             {
@@ -116,19 +116,16 @@ namespace EdgeWorks.Tools.Services
 
             Console.WriteLine("");
             Console.WriteLine("Select a file:", "00CC66".ToColor());
-            if (int.TryParse(Console.ReadLine(), out int key) && files.Any(x=>x.Key == key))
-            {
-                if (!files.Any(x => x.Key == key))
+            var key = Console.ReadLine();
+
+                if (!files.Any(x => x.Key.ToString() == key || x.Value.Name == key))
                 {
-                    Console.WriteLine("Exiting filestorage");
-                    return null;
+                Console.WriteLine("No such file found.. Exiting filestorage");
+                return null;
                 }
                 Console.WriteLine("");
                 Console.WriteLine("Started loading file from storage..");
-                return await _fileService.LoadFromStorage<AuctionData>("RawData", files.First(x => x.Key == key).Value.Name);
-            }
-            Console.WriteLine("No such file found.. Exiting filestorage");
-            Console.WriteLine("");
+                return await _fileService.LoadFromStorage<AuctionData>("RawData", files.First(x => x.Key.ToString() == key || x.Value.Name == key).Value.Name);
             return null;
         }
 

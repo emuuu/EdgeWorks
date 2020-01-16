@@ -7,7 +7,7 @@ namespace EdgeWorks.Models.Items
     public class Item
     {
         public Links _Links { get; set; }
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public Quality Quality { get; set; }
         public int Level { get; set; }

@@ -32,12 +32,12 @@ namespace EdgeWorks.Shared.Configurations.BlizzardAPIs.WorldOfWarcraft.GameDataA
             return string.Format("https://{0}.api.blizzard.com/data/wow/item-class/{1}/item-subclass/{2}?namespace={3}&locale={4}", _settings.Region, itemClassId, itemSubclassId, _settings.Static, _settings.Locale);
         }
 
-        public string Item(int itemId)
+        public string Item(long itemId)
         {
             return string.Format("https://{0}.api.blizzard.com/data/wow/item/{1}?namespace={2}&locale={3}", _settings.Region, itemId, _settings.Static, _settings.Locale);
         }
 
-        public string ItemMedia(int itemId)
+        public string ItemMedia(long itemId)
         {
             return string.Format("https://{0}.api.blizzard.com/data/wow/media/item/{1}?namespace={2}&locale={3}", _settings.Region, itemId, _settings.Static, _settings.Locale);
         }
