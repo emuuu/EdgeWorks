@@ -29,6 +29,7 @@ namespace EdgeWorks.Tools.StartUpExtensions
 
 			//add services
 			services.AddSingleton<AnalyseService>();
+			services.AddSingleton<DataProcessService>();
 
 			return services;
 		}

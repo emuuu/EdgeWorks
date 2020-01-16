@@ -14,11 +14,13 @@ namespace EdgeWorks.Tools.App
     public class Application
     {
         public readonly AnalyseService _analyseService;
+        public readonly DataProcessService _dataProcessService;
         private List<KeyValuePair<int, MethodInfo>> _methods;
 
-        public Application(AnalyseService analyseService)
+        public Application(AnalyseService analyseService, DataProcessService dataProcessService)
         {
             _analyseService = analyseService;
+            _dataProcessService = dataProcessService;
             _methods = new List<KeyValuePair<int, MethodInfo>>();
         }
 
