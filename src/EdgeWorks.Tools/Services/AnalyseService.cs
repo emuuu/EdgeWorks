@@ -1,4 +1,5 @@
-﻿using EdgeWorks.Models.Auctions;
+﻿using EdgeWorks.Shared.Extensions;
+using EdgeWorks.Models.Auctions;
 using EdgeWorks.Models.Items;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.WorldOfWarcraft.GameDataAPIs;
 using EdgeWorks.Shared.Helpers;
@@ -31,9 +32,7 @@ namespace EdgeWorks.Tools.Services
             _tokenService = tokenService;
             _itemApi = itemApi;
 
-            var itemInit = InitObservedItems(observedItems.Value);
-            itemInit.Wait();
-            _observedItems = itemInit.Result;
+            _observedItems = InitObservedItems(observedItems.Value);
         }
 
         public async Task GetItemStatistics()
@@ -61,15 +60,10 @@ namespace EdgeWorks.Tools.Services
             } while (true);
         }
 
-        private async Task<IEnumerable<KeyValuePair<int, Item>>> InitObservedItems(ObservedItems observedItems)
+        private IEnumerable<KeyValuePair<int, Item>> InitObservedItems(ObservedItems observedItems)
         {
             var i = 1;
-            var items = new List<Item>();
-            foreach (var item in observedItems.Items)
-            {
-                items.Add(await GetItem(item.Id));
-            }
-            return items.Select(x => new KeyValuePair<int, Item>(i++, x)).ToList();
+            return observedItems.Items.Select(x => new KeyValuePair<int, Item>(i++, x)).ToList();
         }
 
         private async Task PrintItemList()
@@ -106,7 +100,7 @@ namespace EdgeWorks.Tools.Services
         private async Task<AuctionData> GetAuctionFiles()
         {
             var i = 1;
-            var files = (await _fileService.GetStorage("RawData")).Select(x => new KeyValuePair<int, FileInfo>(i++, new FileInfo(x))).ToList();
+            var files = (await _fileService.GetStorage("RawData")).Select(x => new KeyValuePair<int, FileInfo>(i++, x)).ToList();
             files.ForEach(x =>
             {
                 Console.WriteFormatted("{0}", Color.White, TypeDictionary.FormatInput(x.Key));

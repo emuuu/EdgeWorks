@@ -1,5 +1,6 @@
 ﻿using EdgeWorks.Data.System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace EdgeWorks.Shared.Services.Files
@@ -8,7 +9,7 @@ namespace EdgeWorks.Shared.Services.Files
     {
         Task<FileSaveResponse> SaveToStorage(string subStorage, string fileName, object file, bool compress);
         
-        Task<IEnumerable<string>> GetStorage(string subStorage);
+        Task<IEnumerable<FileInfo>> GetStorage(string subStorage);
 
         Task<T> LoadFromStorage<T>(string subStorage, string fileName);
     }

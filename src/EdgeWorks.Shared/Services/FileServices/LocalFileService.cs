@@ -63,13 +63,7 @@ namespace EdgeWorks.Shared.Services.Files
                             }
                             else
                             {
-                                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                                using (var streamWriter = new StreamWriter(memoryStream))
-                                {
-                                    await streamWriter.WriteAsync(file.ToJson());
-                                    memoryStream.Seek(0, SeekOrigin.Begin);
-                                    memoryStream.CopyTo(fileStream);
-                                }
+                                await File.WriteAllTextAsync(filePath, file.ToJson());
                             }
                         }
                     }
@@ -96,11 +90,16 @@ namespace EdgeWorks.Shared.Services.Files
             }
         }
 
-        public async Task<IEnumerable<string>> GetStorage(string subStorage)
+        public async Task<IEnumerable<FileInfo>> GetStorage(string subStorage)
         {
             return await Task.Run(() =>
             {
-                return Directory.GetFiles(_fileStorage + subStorage);
+                var path = _fileStorage + subStorage;
+                if (!Directory.Exists(path))
+                {
+                    _logger.LogError("SubStorage {0} not found", subStorage);
+                }
+                return Directory.GetFiles(path).Select(x => new FileInfo(x));
              });
         }
 
@@ -132,11 +131,15 @@ namespace EdgeWorks.Shared.Services.Files
 
                 return JsonConvert.DeserializeObject<T>(json);
             }
+            catch (JsonReaderException)
+            {
+                _logger.LogError("LocalFile: File corrupted {0}", fileName);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "LocalFile: Failed to obtain file {0}", fileName);
-                return default;
             }
+            return default;
         }
     }
 }

@@ -31,6 +31,7 @@ namespace EdgeWorks.Tools
                 .ConfigureFileStorage(Configuration)
                 .ConfigureLogging(Configuration)
                 .ConfigureDataServices(Configuration)
+                .ConfigureStatistics(Configuration)
                 .ConfigureBlizzardApis(Configuration);
 
             // IMPORTANT! Register application entry point

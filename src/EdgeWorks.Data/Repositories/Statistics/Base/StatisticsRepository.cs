@@ -11,7 +11,7 @@ namespace EdgeWorks.Data.Statistics
     {
         public StatisticsRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            UnitOfWork.Connection.Execute("CREATE TABLE IF NOT EXISTS 'ItemStatistic' ( 'Id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'Statisticname' TEXT NOT NULL, 'Extension' TEXT, 'Hash' TEXT, 'Path' TEXT, 'IsSuccess' INTEGER NOT NULL, 'ErrorMessage' TEXT )", transaction: UnitOfWork.Transaction);
+            UnitOfWork.Connection.Execute("CREATE TABLE IF NOT EXISTS  'ItemStatistic' ( 'Id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'ItemID' INTEGER NOT NULL, 'Name' TEXT NOT NULL, 'TimeStamp' TEXT NOT NULL, 'Sum' REAL NOT NULL, 'Count' INTEGER NOT NULL, 'ArithmeticMean' REAL NOT NULL, 'Median' REAL NOT NULL, 'Minimum' REAL NOT NULL, 'Maxmimum' REAL NOT NULL, 'Range' REAL NOT NULL, 'Variance' REAL NOT NULL, 'StandardDeviation' REAL NOT NULL, 'SampleVariance' REAL NOT NULL, 'SampleStandardDeviation' REAL NOT NULL, 'LowerQuartile' REAL NOT NULL, 'HigherQuartile' REAL NOT NULL, 'QuartileDistance' REAL NOT NULL )", transaction: UnitOfWork.Transaction);
         }
 
         public IEnumerable<ItemStatistic> GetByItem(long itemID)

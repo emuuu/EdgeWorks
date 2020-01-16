@@ -10,7 +10,7 @@ namespace EdgeWorks.Data.Statistics
     {
         public int Id { get; set; }
 
-        public long itemId { get; set; }
+        public long ItemID { get; set; }
 
         public string Name { get; set; }
 
