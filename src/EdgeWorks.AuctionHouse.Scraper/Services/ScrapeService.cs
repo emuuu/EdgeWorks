@@ -57,7 +57,7 @@ namespace EdgeWorks.AuctionHouse.Scraper.Services
                             response = await HttpRequestFactory.Get(accessToken, auctionFile.Url);
                             var auctions = response.ContentAsType<Models.Auctions.AuctionData>();
 
-                            var fileResonse = await _fileService.SaveToStorage(auctionFile.LastModified.ToString(), auctions, true);
+                            var fileResonse = await _fileService.SaveToStorage("RawData", auctionFile.LastModified.ToString(), auctions, true);
 
                             if (fileResonse.IsSuccess)
                             {

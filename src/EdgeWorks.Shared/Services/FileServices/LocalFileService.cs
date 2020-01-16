@@ -32,7 +32,7 @@ namespace EdgeWorks.Shared.Services.Files
             _logger = logger;
         }
 
-        public async Task<FileSaveResponse> SaveToStorage(string fileName, object file, bool compress)
+        public async Task<FileSaveResponse> SaveToStorage(string subStorage, string fileName, object file, bool compress)
         {
             using (var uow = _dataService.StartUnitOfWork())
             {
@@ -42,8 +42,13 @@ namespace EdgeWorks.Shared.Services.Files
                 };
                 try
                 {
+                    var path = _fileStorage + subStorage + "\\";
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
                     var fileExtension = compress ? ".zip" : ".json";
-                    var filePath = _fileStorage + fileName + fileExtension;
+                    var filePath = path + fileName + fileExtension;
                     if (!File.Exists(filePath))
                     {
                         using (var memoryStream = new MemoryStream())
@@ -91,22 +96,23 @@ namespace EdgeWorks.Shared.Services.Files
             }
         }
 
-        public async Task<IEnumerable<string>> GetStorage()
+        public async Task<IEnumerable<string>> GetStorage(string subStorage)
         {
             return await Task.Run(() =>
-             {
-                 return Directory.GetFiles(_fileStorage);
+            {
+                return Directory.GetFiles(_fileStorage + subStorage);
              });
         }
 
-        public async Task<T> LoadFromStorage<T>(string fileName)
+        public async Task<T> LoadFromStorage<T>(string subStorage, string fileName)
         {
             try
             {
-                if (!File.Exists(_fileStorage + fileName))
+                var path = _fileStorage + subStorage + "\\";
+                if (!File.Exists(path + fileName))
                     return default;
 
-                var file = new FileInfo(_fileStorage + fileName);
+                var file = new FileInfo(path + fileName);
 
                 var json = "";
                 if (file.Extension.ToLower() == ".zip")

@@ -106,7 +106,7 @@ namespace EdgeWorks.Tools.Services
         private async Task<AuctionData> GetAuctionFiles()
         {
             var i = 1;
-            var files = (await _fileService.GetStorage()).Select(x => new KeyValuePair<int, FileInfo>(i++, new FileInfo(x))).ToList();
+            var files = (await _fileService.GetStorage("RawData")).Select(x => new KeyValuePair<int, FileInfo>(i++, new FileInfo(x))).ToList();
             files.ForEach(x =>
             {
                 Console.WriteFormatted("{0}", Color.White, TypeDictionary.FormatInput(x.Key));
@@ -125,7 +125,7 @@ namespace EdgeWorks.Tools.Services
                 }
                 Console.WriteLine("");
                 Console.WriteLine("Started loading file from storage..");
-                return await _fileService.LoadFromStorage<AuctionData>(files.First(x => x.Key == key).Value.Name);
+                return await _fileService.LoadFromStorage<AuctionData>("RawData", files.First(x => x.Key == key).Value.Name);
             }
             Console.WriteLine("No such file found.. Exiting filestorage");
             Console.WriteLine("");
