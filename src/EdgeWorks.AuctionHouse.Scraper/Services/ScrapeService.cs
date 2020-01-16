@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
 using EdgeWorks.Shared.Configurations.BlizzardAPIs.CommunityAPIs;
-using EdgeWorks.Data;
 using EdgeWorks.Shared.Helpers;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
-using EdgeWorks.Shared.Configurations.BlizzardAPIs;
 using EdgeWorks.Shared.Services.Authentication;
 using EdgeWorks.Shared.Services.Files;
+using EdgeWorks.Data.Auctions;
 
 namespace EdgeWorks.AuctionHouse.Scraper.Services
 {

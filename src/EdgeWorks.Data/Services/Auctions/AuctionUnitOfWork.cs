@@ -1,8 +1,6 @@
-﻿using EdgeWorks.Data.Auctions;
-using EdgeWorks.Data.System;
-using FluiTec.AppFx.Data.Dapper;
+﻿using FluiTec.AppFx.Data.Dapper;
 
-namespace EdgeWorks.Data
+namespace EdgeWorks.Data.Auctions
 {
     public class AuctionUnitOfWork : DapperUnitOfWork
     {

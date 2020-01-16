@@ -3,14 +3,14 @@ using FluiTec.AppFx.Data.Dapper.SqLite;
 using FluiTec.AppFx.Options;
 using Microsoft.Extensions.Configuration;
 
-namespace EdgeWorks.Data.Configurations.SqliteOptions
+namespace EdgeWorks.Data.System
 {
     [ConfigurationName("Dapper")]
-    public class AuctionServiceOptions : DapperServiceOptions
+    public class FileServiceOptions : DapperServiceOptions
     {
-        public AuctionServiceOptions(IConfiguration configuration)
+        public FileServiceOptions(IConfiguration configuration)
         {
-            ConnectionString = configuration.GetConnectionString("auctionsDB");
+            ConnectionString = configuration.GetConnectionString("fileDB");
             ConnectionFactory = new SqLiteConnectionFactory();
         }
 

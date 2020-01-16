@@ -1,12 +1,8 @@
 ﻿using EdgeWorks.AuctionHouse.Scraper.Services;
-using EdgeWorks.AuctionHouse.Scraper.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using EdgeWorks.Data;
-using EdgeWorks.Data.Configurations.SqliteOptions;
 using EdgeWorks.Shared.Services.Authentication;
-using EdgeWorks.Shared.Services.Files;
-using EdgeWorks.Shared.Configuration;
+using EdgeWorks.Data.Auctions;
 
 namespace EdgeWorks.AuctionHouse.Scraper.StartUpExtensions
 {

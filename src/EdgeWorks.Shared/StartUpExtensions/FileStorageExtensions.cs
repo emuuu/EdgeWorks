@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using EdgeWorks.Shared.Configuration;
-using EdgeWorks.Data.Configurations.SqliteOptions;
-using EdgeWorks.Data;
 using EdgeWorks.Shared.Services.Files;
+using EdgeWorks.Data.System;
 
 namespace EdgeWorks.Shared.StartUpExtensions
 {

@@ -3,32 +3,29 @@ using FluiTec.AppFx.Data;
 using FluiTec.AppFx.Data.Dapper;
 using FluiTec.AppFx.Data.Dapper.SqLite;
 using FluentMigrator.Runner.VersionTableInfo;
-using EdgeWorks.Data.Configurations.SqliteOptions;
-using EdgeWorks.Data.System;
 
-namespace EdgeWorks.Data
+namespace EdgeWorks.Data.Auctions
 {
-    public class FileDataService : SqLiteDapperDataService
+    public class AuctionDataService : SqLiteDapperDataService
     {
         /// <summary>	Constructor. </summary>
         /// <param name="options">	Options for controlling the operation. </param>
-        public FileDataService(FileServiceOptions options) : base(options)
+        public AuctionDataService(AuctionServiceOptions options) : base(options)
         {
             RegisterRepositories();
         }
 
-        public FileUnitOfWork StartUnitOfWork()
+        public AuctionUnitOfWork StartUnitOfWork()
         {
-            return new FileUnitOfWork(this);
+            return new AuctionUnitOfWork(this);
         }
         private void RegisterRepositories()
         {
-            RegisterRepositoryProvider(new Func<IUnitOfWork, IFileSaveResponseRepository>(work =>
-                           new FileSaveResponseRepository(work)));
-
+            RegisterRepositoryProvider(new Func<IUnitOfWork, IAuctionFileRepository>(work =>
+                                       new AuctionFileRepository(work)));
         }
 
-        public override string Name => nameof(FileDataService);
+        public override string Name => nameof(AuctionDataService);
 
         public override SqlType SqlType => SqlType.Mssql;
 

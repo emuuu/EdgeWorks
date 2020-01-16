@@ -1,7 +1,6 @@
-﻿using EdgeWorks.Data.System;
-using FluiTec.AppFx.Data.Dapper;
+﻿using FluiTec.AppFx.Data.Dapper;
 
-namespace EdgeWorks.Data
+namespace EdgeWorks.Data.System
 {
     public class FileUnitOfWork : DapperUnitOfWork
     {
