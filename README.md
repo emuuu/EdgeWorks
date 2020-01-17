@@ -25,4 +25,4 @@ The ApiSettings define which region / realm / locale is used.
 ### Dockerize
 The scraper is ready-to-use in a [Docker](https://www.docker.com/) container:
 
-Just edit the Volume mappings in [docker-compose.yml](https://github.com/emuuu/EdgeWorks/blob/master/src/EdgeWorks.AuctionHouse.Scraper/docker-compose.yml) and change the paths in [appsettings.json](https://github.com/emuuu/EdgeWorks/blob/master/src/EdgeWorks.AuctionHouse.Scraper/appsettings.json) to the mapped paths.
+Just edit the Volume mappings in [docker-compose.yml](https://github.com/emuuu/EdgeWorks/blob/master/src/docker-compose-scraper.yml) and change the paths in [appsettings.json](https://github.com/emuuu/EdgeWorks/blob/master/src/EdgeWorks.AuctionHouse.Scraper/appsettings.json) to the mapped paths.
