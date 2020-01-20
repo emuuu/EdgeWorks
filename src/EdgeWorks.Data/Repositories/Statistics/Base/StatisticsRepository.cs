@@ -2,6 +2,7 @@
 using EdgeWorks.Data.Statistics;
 using FluiTec.AppFx.Data;
 using FluiTec.AppFx.Data.Dapper;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,6 +18,11 @@ namespace EdgeWorks.Data.Statistics
         public IEnumerable<ItemStatistic> GetByItem(long itemID)
         {
             return UnitOfWork.Connection.Query<ItemStatistic>("SELECT * FROM ItemStatistic WHERE ItemID = @ItemID", new { ItemID = itemID }, transaction: UnitOfWork.Transaction);
+        }
+
+        public IEnumerable<ItemStatistic> GetByTimestamp(DateTime timestamp)
+        {
+            return UnitOfWork.Connection.Query<ItemStatistic>("SELECT * FROM ItemStatistic WHERE Timestamp = @Timestamp", new { Timestamp = timestamp }, transaction: UnitOfWork.Transaction);
         }
     }
 }
